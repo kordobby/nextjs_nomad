@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+// one of BLUEPRINT
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import NavBar from "../components/NavBar";
+
+export default function App({Component, pageProps}) {
+  return (
+    <>
+      <NavBar/>
+      <Component {...pageProps}/>
+    </>
+  );
 }
-
-export default MyApp
