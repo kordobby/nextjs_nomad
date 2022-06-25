@@ -1,4 +1,5 @@
 # NextJS Intro
+
 ```javascript
 NextJS application VS create-react-app application
 
@@ -11,7 +12,6 @@ NextJS application VS create-react-app application
   - NextJS will run ReactJS on the BE. NextJS will pre-generate that page, and it will be HTML page.
   - there's no white screen or loading stage => but after the user downloads all the JS, then ReactJS will take-over. and everything will become a ReactJS application.
 ```
-
 
 ```javascript
 npx create-next-app@latest --typescript
@@ -47,4 +47,36 @@ npm run dev
 Global CSS cannot be imported from files other than your Custom <App>.
 ```
 
+## API_KEY
 
+```javascript
+// .gitignore
+#vercel
+  .vercel
+  .env
+```
+
+```javascript
+const API_KEY = process.env.API_KEY ;
+
+module.exports = {
+  reactStrictMode : true,
+  async redirects() {
+    return [
+      {
+        source : '/old-blog/:path*',
+        destination : '/new-sexy-blog/:path*',
+        permanent : false
+      }
+    ];
+  }
+  async rewrites() {
+    return [
+      {
+        source : '/api/movies',
+        destination : `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+      },
+    ];
+  },
+};
+```
